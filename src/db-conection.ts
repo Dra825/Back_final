@@ -11,4 +11,4 @@ const pool = new Pool({
 
 export function query(text: any): any {
     return pool.query(text);
-};
+}; 
