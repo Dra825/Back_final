@@ -5,7 +5,7 @@ const connectionString = 'postgresql://cartas_game_user:DqON4evQxb7BFUTJ3fB564YG
 const pool = new Pool({
   connectionString,
 });
-
+ 
 export function query(text: string, params?: any[]) {
   return pool.query(text, params);
 }
