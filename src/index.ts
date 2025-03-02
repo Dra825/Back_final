@@ -22,7 +22,7 @@ app.get('/tiempo_restar/:user', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
+ 
 app.get('/tiempo/:user/:item', async (req, res) => {
     console.log('Petición recibida al endpoint GET /equipo');
     try {
