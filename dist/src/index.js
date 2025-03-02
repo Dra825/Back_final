@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -15,23 +11,13 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -42,12 +28,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -74,8 +60,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
-var app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+var app = express_1.default();
+app.use(cors_1.default());
 var body_parser_1 = __importDefault(require("body-parser"));
 var JuankUnderAgua = body_parser_1.default.json();
 var db = __importStar(require("./db-conection"));
@@ -88,14 +74,14 @@ app.get('/tiempo_restar/:user', function (req, res) { return __awaiter(void 0, v
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 6, , 7]);
-                return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '".concat(req.params.user, "' AND item_id = 'Pocion_Pro' "))];
+                return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '" + req.params.user + "' AND item_id = 'Pocion_Pro' ")];
             case 2:
                 tiempo = _a.sent();
                 if (!(tiempo.rows[0].tiempo > 0)) return [3 /*break*/, 5];
-                return [4 /*yield*/, db.query("UPDATE Tiempo_Pociones SET tiempo = tiempo -1 WHERE item_id ='Pocion_Pro' AND usuario_id = '".concat(req.params.user, "' "))];
+                return [4 /*yield*/, db.query("UPDATE Tiempo_Pociones SET tiempo = tiempo -1 WHERE item_id ='Pocion_Pro' AND usuario_id = '" + req.params.user + "' ")];
             case 3:
                 _a.sent();
-                return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '".concat(req.params.user, "' AND item_id = 'Pocion_Pro' "))];
+                return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '" + req.params.user + "' AND item_id = 'Pocion_Pro' ")];
             case 4:
                 tiempo = _a.sent();
                 _a.label = 5;
@@ -121,7 +107,7 @@ app.get('/tiempo/:user/:item', function (req, res) { return __awaiter(void 0, vo
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '".concat(req.params.user, "' AND item_id = '").concat(req.params.item, "' "))];
+                return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '" + req.params.user + "' AND item_id = '" + req.params.item + "' ")];
             case 2:
                 item = _a.sent();
                 console.log(req.params.carta);
@@ -151,30 +137,30 @@ app.post("/tomar", JuankUnderAgua, function (req, res) { return __awaiter(void 0
                 };
                 console.log("cositas", Data);
                 if (!(Data.item !== "Brazalete")) return [3 /*break*/, 12];
-                return [4 /*yield*/, db.query("UPDATE Usuarios_Items SET cantidad = cantidad -1 WHERE item_id = '".concat(Data.item, "'AND usuario_id = '").concat(Data.user, "' "))];
+                return [4 /*yield*/, db.query("UPDATE Usuarios_Items SET cantidad = cantidad -1 WHERE item_id = '" + Data.item + "'AND usuario_id = '" + Data.user + "' ")];
             case 2:
                 _a.sent();
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Items WHERE usuario_id = '".concat(Data.user, "' AND item_id = '").concat(Data.item, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Items WHERE usuario_id = '" + Data.user + "' AND item_id = '" + Data.item + "'")];
             case 3:
                 actualizacion = _a.sent();
                 if (!(actualizacion.rows[0].cantidad == 0)) return [3 /*break*/, 5];
-                return [4 /*yield*/, db.query("DELETE FROM Usuarios_Items WHERE usuario_id= '".concat(Data.user, "' AND item_id = '").concat(Data.item, "'"))];
+                return [4 /*yield*/, db.query("DELETE FROM Usuarios_Items WHERE usuario_id= '" + Data.user + "' AND item_id = '" + Data.item + "'")];
             case 4:
                 _a.sent();
                 _a.label = 5;
-            case 5: return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '".concat(Data.user, "' AND item_id = '").concat(Data.item, "'"))];
+            case 5: return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '" + Data.user + "' AND item_id = '" + Data.item + "'")];
             case 6:
                 comprobacion = _a.sent();
                 if (!(comprobacion.rows.length > 0)) return [3 /*break*/, 8];
-                return [4 /*yield*/, db.query("UPDATE Tiempo_Pociones SET tiempo = tiempo +60 WHERE item_id = '".concat(Data.item, "' AND usuario_id = '").concat(Data.user, "'"))];
+                return [4 /*yield*/, db.query("UPDATE Tiempo_Pociones SET tiempo = tiempo +60 WHERE item_id = '" + Data.item + "' AND usuario_id = '" + Data.user + "'")];
             case 7:
                 _a.sent();
                 return [3 /*break*/, 10];
-            case 8: return [4 /*yield*/, db.query("INSERT INTO Tiempo_Pociones (usuario_id, tiempo, item_id) VALUES ('".concat(Data.user, "', 60, '").concat(Data.item, "' )"))];
+            case 8: return [4 /*yield*/, db.query("INSERT INTO Tiempo_Pociones (usuario_id, tiempo, item_id) VALUES ('" + Data.user + "', 60, '" + Data.item + "' )")];
             case 9:
                 _a.sent();
                 _a.label = 10;
-            case 10: return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '".concat(Data.user, "' AND item_id = '").concat(Data.item, "'"))];
+            case 10: return [4 /*yield*/, db.query("SELECT * FROM Tiempo_Pociones WHERE usuario_id = '" + Data.user + "' AND item_id = '" + Data.item + "'")];
             case 11:
                 comprobacion2 = _a.sent();
                 res.json(comprobacion2.rows[0]);
@@ -198,7 +184,7 @@ app.get('/cargar_items/:user', function (req, res) { return __awaiter(void 0, vo
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Items WHERE usuario_id = '".concat(req.params.user, "' "))];
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Items WHERE usuario_id = '" + req.params.user + "' ")];
             case 2:
                 item = _a.sent();
                 console.log(req.params.carta);
@@ -228,7 +214,7 @@ app.post("/add_item", JuankUnderAgua, function (req, res) { return __awaiter(voi
                     gemas: req.body.gemas
                 };
                 console.log("cositas", Data);
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Items WHERE usuario_id = '".concat(Data.user, "' AND item_id = '").concat(Data.item, "'"))
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Items WHERE usuario_id = '" + Data.user + "' AND item_id = '" + Data.item + "'")
                     // 2. Actualizar Items
                 ];
             case 2:
@@ -237,20 +223,20 @@ app.post("/add_item", JuankUnderAgua, function (req, res) { return __awaiter(voi
                 console.log("Actualizando Items Usuario");
                 if (!(comprobacion.rows.length > 0)) return [3 /*break*/, 4];
                 // Update Items
-                return [4 /*yield*/, db.query("UPDATE Usuarios_Items SET cantidad = ".concat(comprobacion.rows[0].cantidad + 1, " WHERE item_id = '").concat(Data.item, "' "))];
+                return [4 /*yield*/, db.query("UPDATE Usuarios_Items SET cantidad = " + (comprobacion.rows[0].cantidad + 1) + " WHERE item_id = '" + Data.item + "' ")];
             case 3:
                 // Update Items
                 _a.sent();
                 console.log("Items de usuario actualizadas");
                 return [3 /*break*/, 6];
             case 4:
-                console.log("Creando nuevo item: ".concat(Data.user, ", '").concat(Data.item, "'"));
-                return [4 /*yield*/, db.query("INSERT INTO Usuarios_Items (usuario_id, item_id, cantidad) VALUES ('".concat(Data.user, "', '").concat(Data.item, "', 1)"))];
+                console.log("Creando nuevo item: " + Data.user + ", '" + Data.item + "'");
+                return [4 /*yield*/, db.query("INSERT INTO Usuarios_Items (usuario_id, item_id, cantidad) VALUES ('" + Data.user + "', '" + Data.item + "', 1)")];
             case 5:
                 _a.sent();
                 console.log("Nuevo item creado");
                 _a.label = 6;
-            case 6: return [4 /*yield*/, db.query("UPDATE Usuarios SET gemas = gemas - ".concat(Data.gemas, " WHERE id = '").concat(Data.user, "' "))];
+            case 6: return [4 /*yield*/, db.query("UPDATE Usuarios SET gemas = gemas - " + Data.gemas + " WHERE id = '" + Data.user + "' ")];
             case 7:
                 _a.sent();
                 res.json("Item añadido a tu inventario con exito");
@@ -274,7 +260,7 @@ app.post("/gemas", JuankUnderAgua, function (req, res) { return __awaiter(void 0
             case 1:
                 _a.trys.push([1, 3, , 4]);
                 console.log(req.body.equipo);
-                return [4 /*yield*/, db.query("UPDATE Usuarios SET gemas = gemas + ".concat(req.body.gemas, "  WHERE id = '").concat(req.body.user, "'"))];
+                return [4 /*yield*/, db.query("UPDATE Usuarios SET gemas = gemas + " + req.body.gemas + "  WHERE id = '" + req.body.user + "'")];
             case 2:
                 _a.sent();
                 console.log("GEMAS ACTUALIZADAS :D");
@@ -301,35 +287,35 @@ app.get('/equipo_cargar/:carta1/:carta2/:carta3/:carta4/:carta5', function (req,
                 _a.trys.push([1, 12, , 13]);
                 console.log(req.params.carta);
                 if (!req.params.carta1) return [3 /*break*/, 3];
-                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '".concat(req.params.carta1, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '" + req.params.carta1 + "'")];
             case 2:
                 carta1 = _a.sent();
                 cartas.push(carta1.rows[0]);
                 _a.label = 3;
             case 3:
                 if (!req.params.carta2) return [3 /*break*/, 5];
-                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '".concat(req.params.carta2, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '" + req.params.carta2 + "'")];
             case 4:
                 carta2 = _a.sent();
                 cartas.push(carta2.rows[0]);
                 _a.label = 5;
             case 5:
                 if (!req.params.carta3) return [3 /*break*/, 7];
-                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '".concat(req.params.carta3, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '" + req.params.carta3 + "'")];
             case 6:
                 carta3 = _a.sent();
                 cartas.push(carta3.rows[0]);
                 _a.label = 7;
             case 7:
                 if (!req.params.carta4) return [3 /*break*/, 9];
-                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '".concat(req.params.carta4, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '" + req.params.carta4 + "'")];
             case 8:
                 carta4 = _a.sent();
                 cartas.push(carta4.rows[0]);
                 _a.label = 9;
             case 9:
                 if (!req.params.carta5) return [3 /*break*/, 11];
-                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '".concat(req.params.carta5, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '" + req.params.carta5 + "'")];
             case 10:
                 carta5 = _a.sent();
                 cartas.push(carta5.rows[0]);
@@ -357,7 +343,7 @@ app.get('/mostrar_cartas/:carta', function (req, res) { return __awaiter(void 0,
             case 1:
                 _a.trys.push([1, 3, , 4]);
                 console.log(req.params.carta);
-                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '".concat(req.params.carta, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Cartas WHERE nombre = '" + req.params.carta + "'")];
             case 2:
                 carta = _a.sent();
                 console.log(carta);
@@ -383,7 +369,7 @@ app.get('/equipo/:user', function (req, res) { return __awaiter(void 0, void 0, 
             case 1:
                 _a.trys.push([1, 3, , 4]);
                 console.log(req.params.user);
-                return [4 /*yield*/, db.query("SELECT * FROM Equipos WHERE usuario_id = '".concat(req.params.user, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Equipos WHERE usuario_id = '" + req.params.user + "'")];
             case 2:
                 equipo = _a.sent();
                 console.log(equipo);
@@ -409,40 +395,40 @@ app.post("/guardar_equipo", JuankUnderAgua, function (req, res) { return __await
             case 1:
                 _a.trys.push([1, 14, , 15]);
                 console.log(req.body.equipo);
-                return [4 /*yield*/, db.query("DELETE FROM Equipos WHERE usuario_id = '".concat(req.body.user, "'"))];
+                return [4 /*yield*/, db.query("DELETE FROM Equipos WHERE usuario_id = '" + req.body.user + "'")];
             case 2:
                 _a.sent();
                 console.log("Delete hechillo");
                 if (!(req.body.equipo.length == 1)) return [3 /*break*/, 4];
-                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1) VALUES ('".concat(req.body.user, "', '").concat(req.body.equipo[0].nombre, "')"))];
+                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1) VALUES ('" + req.body.user + "', '" + req.body.equipo[0].nombre + "')")];
             case 3:
                 _a.sent();
                 return [3 /*break*/, 12];
             case 4:
                 if (!(req.body.equipo.length == 2)) return [3 /*break*/, 6];
-                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2) VALUES ('".concat(req.body.user, "', '").concat(req.body.equipo[0].nombre, "', '").concat(req.body.equipo[1].nombre, "')"))];
+                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2) VALUES ('" + req.body.user + "', '" + req.body.equipo[0].nombre + "', '" + req.body.equipo[1].nombre + "')")];
             case 5:
                 _a.sent();
                 return [3 /*break*/, 12];
             case 6:
                 if (!(req.body.equipo.length == 3)) return [3 /*break*/, 8];
-                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2, carta_id3) VALUES ('".concat(req.body.user, "', '").concat(req.body.equipo[0].nombre, "', '").concat(req.body.equipo[1].nombre, "', '").concat(req.body.equipo[2].nombre, "')"))];
+                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2, carta_id3) VALUES ('" + req.body.user + "', '" + req.body.equipo[0].nombre + "', '" + req.body.equipo[1].nombre + "', '" + req.body.equipo[2].nombre + "')")];
             case 7:
                 _a.sent();
                 return [3 /*break*/, 12];
             case 8:
                 if (!(req.body.equipo.length == 4)) return [3 /*break*/, 10];
-                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2, carta_id3, carta_id4) VALUES ('".concat(req.body.user, "', '").concat(req.body.equipo[0].nombre, "', '").concat(req.body.equipo[1].nombre, "', '").concat(req.body.equipo[2].nombre, "', '").concat(req.body.equipo[3].nombre, "')"))];
+                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2, carta_id3, carta_id4) VALUES ('" + req.body.user + "', '" + req.body.equipo[0].nombre + "', '" + req.body.equipo[1].nombre + "', '" + req.body.equipo[2].nombre + "', '" + req.body.equipo[3].nombre + "')")];
             case 9:
                 _a.sent();
                 return [3 /*break*/, 12];
             case 10:
                 if (!(req.body.equipo.length == 5)) return [3 /*break*/, 12];
-                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2, carta_id3, carta_id4, carta_id5) VALUES ('".concat(req.body.user, "', '").concat(req.body.equipo[0].nombre, "', '").concat(req.body.equipo[1].nombre, "', '").concat(req.body.equipo[2].nombre, "', '").concat(req.body.equipo[3].nombre, "', '").concat(req.body.equipo[4].nombre, "')"))];
+                return [4 /*yield*/, db.query("INSERT INTO Equipos (usuario_id, carta_id1, carta_id2, carta_id3, carta_id4, carta_id5) VALUES ('" + req.body.user + "', '" + req.body.equipo[0].nombre + "', '" + req.body.equipo[1].nombre + "', '" + req.body.equipo[2].nombre + "', '" + req.body.equipo[3].nombre + "', '" + req.body.equipo[4].nombre + "')")];
             case 11:
                 _a.sent();
                 _a.label = 12;
-            case 12: return [4 /*yield*/, db.query("SELECT * FROM Equipos WHERE usuario_id = '".concat(req.body.user, "'"))];
+            case 12: return [4 /*yield*/, db.query("SELECT * FROM Equipos WHERE usuario_id = '" + req.body.user + "'")];
             case 13:
                 equipo = _a.sent();
                 console.log(equipo.rows[0]);
@@ -466,7 +452,7 @@ app.get('/bot/:nivel', function (req, res) { return __awaiter(void 0, void 0, vo
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db.query("SELECT * FROM Equipos WHERE usuario_id = 'Bot".concat(req.params.nivel, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Equipos WHERE usuario_id = 'Bot" + req.params.nivel + "'")];
             case 2:
                 equipo = _a.sent();
                 console.log(equipo);
@@ -491,7 +477,7 @@ app.get('/cartas/:user', function (req, res) { return __awaiter(void 0, void 0, 
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db.query("SELECT *\nFROM Usuarios_Cartas\nINNER JOIN Cartas\nON Usuarios_Cartas.carta_id = Cartas.id\nWHERE Usuarios_Cartas.usuario_id = '".concat(req.params.user, "' ORDER BY Cartas.id DESC;"))];
+                return [4 /*yield*/, db.query("SELECT *\nFROM Usuarios_Cartas\nINNER JOIN Cartas\nON Usuarios_Cartas.carta_id = Cartas.id\nWHERE Usuarios_Cartas.usuario_id = '" + req.params.user + "' ORDER BY Cartas.id DESC;")];
             case 2:
                 cartitas = _a.sent();
                 res.json(cartitas.rows);
@@ -515,7 +501,7 @@ app.get('/info_user_cartas/:user', function (req, res) { return __awaiter(void 0
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Cartas WHERE usuario_id ='".concat(req.params.user, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Cartas WHERE usuario_id ='" + req.params.user + "'")];
             case 2:
                 guardar2 = _a.sent();
                 res.json(guardar2.rows);
@@ -539,7 +525,7 @@ app.get('/info/:user', function (req, res) { return __awaiter(void 0, void 0, vo
             case 1:
                 _a.trys.push([1, 3, , 4]);
                 console.log("recibiendo info");
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id ='".concat(req.params.user, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id ='" + req.params.user + "'")];
             case 2:
                 db_response = _a.sent();
                 console.log("Enviando información usuario");
@@ -568,7 +554,7 @@ app.post("/add_card", JuankUnderAgua, function (req, res) { return __awaiter(voi
                     user: req.body.user,
                     carta: req.body.carta,
                 };
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Cartas WHERE usuario_id = '".concat(Data.user, "' AND carta_id = ").concat(Data.carta))
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios_Cartas WHERE usuario_id = '" + Data.user + "' AND carta_id = " + Data.carta)
                     // 2. Actualizar Cartas
                 ];
             case 2:
@@ -577,27 +563,27 @@ app.post("/add_card", JuankUnderAgua, function (req, res) { return __awaiter(voi
                 console.log("Actualizando Cartas Usuario");
                 if (!(comprobacion.rows.length > 0)) return [3 /*break*/, 4];
                 // Update Cartas
-                return [4 /*yield*/, db.query("UPDATE Usuarios_Cartas SET cantidad = ".concat(comprobacion.rows[0].cantidad + 1, " WHERE id = ").concat(comprobacion.rows[0].id, " "))];
+                return [4 /*yield*/, db.query("UPDATE Usuarios_Cartas SET cantidad = " + (comprobacion.rows[0].cantidad + 1) + " WHERE id = " + comprobacion.rows[0].id + " ")];
             case 3:
                 // Update Cartas
                 _a.sent();
                 console.log("Cartas de usuario actualizadas");
                 return [3 /*break*/, 6];
             case 4:
-                console.log("Creando nueva carta: ".concat(Data.user, ", ").concat(Data.carta));
-                return [4 /*yield*/, db.query("INSERT INTO Usuarios_Cartas (usuario_id, carta_id, cantidad) VALUES ('".concat(Data.user, "', ").concat(Data.carta, ", 1)"))];
+                console.log("Creando nueva carta: " + Data.user + ", " + Data.carta);
+                return [4 /*yield*/, db.query("INSERT INTO Usuarios_Cartas (usuario_id, carta_id, cantidad) VALUES ('" + Data.user + "', " + Data.carta + ", 1)")];
             case 5:
                 _a.sent();
                 console.log("Nueva carta creada");
                 _a.label = 6;
-            case 6: return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id ='".concat(Data.user, "'"))];
+            case 6: return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id ='" + Data.user + "'")];
             case 7:
                 user = _a.sent();
-                return [4 /*yield*/, db.query("UPDATE Usuarios SET tiradas = ".concat(user.rows[0].tiradas + 1, " WHERE id = '").concat(Data.user, "'"))];
+                return [4 /*yield*/, db.query("UPDATE Usuarios SET tiradas = " + (user.rows[0].tiradas + 1) + " WHERE id = '" + Data.user + "'")];
             case 8:
                 _a.sent();
                 console.log("Incrementando tiradas del usuario");
-                return [4 /*yield*/, db.query("SELECT * FROM CARTAS WHERE id = ".concat(Data.carta, " "))];
+                return [4 /*yield*/, db.query("SELECT * FROM CARTAS WHERE id = " + Data.carta + " ")];
             case 9:
                 carta = _a.sent();
                 res.json(carta.rows[0]);
@@ -622,16 +608,16 @@ app.post("/usuario", JuankUnderAgua, function (req, res) { return __awaiter(void
                 _a.trys.push([1, 6, , 7]);
                 // Comprobar los Datos para saber que usuario es
                 console.log("comprobando user");
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id = '".concat(req.body.email, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id = '" + req.body.email + "'")];
             case 2:
                 comprobacion = _a.sent();
                 console.log("user comrpobado");
                 if (!(comprobacion.rows.length < 1)) return [3 /*break*/, 5];
-                return [4 /*yield*/, db.query("INSERT INTO Usuarios (id, nombre, tiradas, gemas) VALUES ('".concat(req.body.email, "', '").concat(req.body.name, "', 0, 0);"))];
+                return [4 /*yield*/, db.query("INSERT INTO Usuarios (id, nombre, tiradas, gemas) VALUES ('" + req.body.email + "', '" + req.body.name + "', 0, 0);")];
             case 3:
                 _a.sent();
                 console.log("usuario creado");
-                return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id = '".concat(req.body.email, "'"))];
+                return [4 /*yield*/, db.query("SELECT * FROM Usuarios WHERE id = '" + req.body.email + "'")];
             case 4:
                 comprobacion = _a.sent();
                 _a.label = 5;
@@ -649,4 +635,4 @@ app.post("/usuario", JuankUnderAgua, function (req, res) { return __awaiter(void
     });
 }); });
 var port = process.env.PORT || 3000;
-app.listen(port, function () { return console.log("App listening on PORT ".concat(port, "\n    \n    ENDPOINTS:\n    -POST /add_card\n    -GET /tiradas/:user\n    -GET /cartas/:user\n    -GET /bot\n    -POST /usuario\n    ")); });
+app.listen(port, function () { return console.log("App listening on PORT " + port + "\n    \n    ENDPOINTS:\n    -POST /add_card\n    -GET /tiradas/:user\n    -GET /cartas/:user\n    -GET /bot\n    -POST /usuario\n    "); });
