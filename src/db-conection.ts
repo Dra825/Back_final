@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 
 // Cadena de conexión proporcionada
-const connectionString = 'postgresql://cartas_game_user:DqON4evQxb7BFUTJ3fB564YGcLbCBDwg@dpg-cum67qpu0jms73bkfjhg-a.frankfurt-postgres.render.com/cartas_game';
+const connectionString = 'postgresql://basededatos_gzip_user:nLlDgiA4riZ1am4IQSplRfKw1kH0FlrZ@dpg-cvcqlalumphs73afimog-a.frankfurt-postgres.render.com/basededatos_gzip';
 
 const pool = new Pool({
   connectionString,
